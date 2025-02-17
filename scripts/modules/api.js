@@ -11,3 +11,28 @@ export async function fetchTopMovies() {
         return []; // Return empty array in case of an error
     }
 }
+
+
+// OMDB API Key /////////////////////////////////////////////////////////////////////////
+const OMDB_API_KEY = "144f166d"; 
+
+// Function to search movies from OMDB API
+export async function searchMovies(query) {
+    try {
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${query}`);
+        
+        if (!response.ok) {
+            throw new Error("Failed to fetch search results");
+        }
+
+        const data = await response.json();
+        if (data.Response === "False") {
+            return []; // Return empty array if no results
+        }
+
+        return data.Search; // Return search results
+    } catch (error) {
+        console.error("Error searching movies:", error);
+        return []; // Return empty array on error
+    }
+}

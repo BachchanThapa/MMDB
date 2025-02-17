@@ -1,17 +1,20 @@
 @import url('./carousel.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* ======================== */
 /* Variables */
+/* ======================== */
 :root {
     --header-grey: #121212;
-    /* Primary BG bör vara din bakgrundsfärg */
     --primary-bg: #000000;
     --primary-white: #ffffff;
     --primary-grey: #1A1A1A;
     --text-yellow: #F5C518;
 }
 
-/* Base */
+/* ======================== */
+/* Base Styles */
+/* ======================== */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -23,7 +26,9 @@ body {
     max-width: 100%;
 }
 
-/* Utils */
+/* ======================== */
+/* Utility Classes */
+/* ======================== */
 .content-wrapper {
     max-width: 1180px;
     margin: 0 auto;
@@ -36,6 +41,9 @@ body {
     display: none;
 }
 
+/* ======================== */
+/* Header Styles */
+/* ======================== */
 .header {
     background-color: var(--header-grey);
     width: 100%;
@@ -58,6 +66,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .header__input {
@@ -81,4 +90,122 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* ======================== */
+/* Movie Card Grid Layout */
+/* ======================== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Movie Card Styling */
+.movie-card {
+    position: relative;
+    background-color: var(--primary-grey);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+/* Movie Poster */
+.movie-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Movie Title */
+.movie-title {
+    font-size: 14px;
+    color: white;
+    margin-top: 8px;
+}
+
+/* ======================== */
+/* Favorite Button Styles */
+/* ======================== */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(61, 60, 60);
+    border-radius: 4px;
+    border: none;
+    font-size: 40px;
+    color: var(--text-yellow);
+    padding: 3px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.favorite-btn::before {
+    content: "☆";
+    color: var(--text-yellow);
+}
+
+.favorite-btn.favorite::before {
+    content: "⭐";
+    font-size: 25px;
+    color: var(--text-yellow);
+}
+
+/* ======================== */
+/* Search Suggestions Box */
+/* ======================== */
+.suggestions-box {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    background: var(--primary-grey);
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 5px;
+    padding: 5px;
+    display: none;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+}
+
+.suggestion-item:hover {
+    background: var(--text-yellow);
+    color: black;
+}
+
+.suggestion-poster {
+    width: 40px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.no-suggestions {
+    padding: 10px;
+    text-align: center;
+    color: white;
 }
