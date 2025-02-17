@@ -36,6 +36,7 @@ body {
     display: none;
 }
 
+/* Header Styles */
 .header {
     background-color: var(--header-grey);
     width: 100%;
@@ -58,6 +59,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .header__input {
@@ -81,4 +83,125 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* ======================== */
+/* Additional Styles for Movie Layout */
+/* ======================== */
+
+/* Movie Grid Layout */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Creates a responsive grid */
+    gap: 20px; /* Space between movie cards */
+    justify-content: center; /* Centers the grid */
+    align-items: start; /* Aligns items at the top */
+    padding: 20px;
+    max-width: 1200px; /* Prevents it from stretching too wide */
+    margin: 0 auto; /* Centers the container */
+}
+
+/* Movie Card Styling */
+.movie-card {
+    position: relative;
+    background-color: var(--primary-grey); /* Dark background */
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-card:hover {
+    transform: scale(1.05); /* Small zoom effect on hover */
+}
+
+/* Movie Poster Styling */
+.movie-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Movie Title */
+.movie-title {
+    font-size: 14px;
+    color: white;
+    margin-top: 8px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////*/
+
+/* Favorite Button Styling (Top Right Corner) */
+.favorite-btn {
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--text-yellow); /* Always keep yellow border */
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Default outlined star (☆) */
+.favorite-btn::before {
+    content: "☆"; /* Outlined star */
+    color: var(--text-yellow); /* Keep border yellow always */
+}
+
+/* Filled yellow star when favorited (Inside Yellow, Border Stays Yellow) */
+.favorite-btn.favorite::before {
+    content: "⭐"; /* Filled star */
+    color: var(--text-yellow); /* Only inside changes */
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////*/
+/* Improved Search Suggestions Box */
+.suggestions-box {
+    position: absolute;
+    top: 55px; /* Positions directly under search input */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the box */
+    width: 50%;
+    background: var(--primary-grey);
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 5px;
+    padding: 5px;
+    display: none; /* Hidden by default */
+}
+
+/* Each suggestion item */
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+}
+
+.suggestion-item:hover {
+    background: var(--text-yellow);
+    color: black;
+}
+
+/* Movie Poster in Suggestions */
+.suggestion-poster {
+    width: 40px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+/* No Suggestions Text */
+.no-suggestions {
+    padding: 10px;
+    text-align: center;
+    color: white;
 }
