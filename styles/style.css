@@ -1,17 +1,20 @@
 @import url('./carousel.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* ======================== */
 /* Variables */
+/* ======================== */
 :root {
     --header-grey: #121212;
-    /* Primary BG bör vara din bakgrundsfärg */
     --primary-bg: #000000;
     --primary-white: #ffffff;
     --primary-grey: #1A1A1A;
     --text-yellow: #F5C518;
 }
 
-/* Base */
+/* ======================== */
+/* Base Styles */
+/* ======================== */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -23,7 +26,9 @@ body {
     max-width: 100%;
 }
 
-/* Utils */
+/* ======================== */
+/* Utility Classes */
+/* ======================== */
 .content-wrapper {
     max-width: 1180px;
     margin: 0 auto;
@@ -36,7 +41,9 @@ body {
     display: none;
 }
 
+/* ======================== */
 /* Header Styles */
+/* ======================== */
 .header {
     background-color: var(--header-grey);
     width: 100%;
@@ -86,25 +93,23 @@ body {
 }
 
 /* ======================== */
-/* Additional Styles for Movie Layout */
+/* Movie Card Grid Layout */
 /* ======================== */
-
-/* Movie Grid Layout */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Creates a responsive grid */
-    gap: 20px; /* Space between movie cards */
-    justify-content: center; /* Centers the grid */
-    align-items: start; /* Aligns items at the top */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
     padding: 20px;
-    max-width: 1200px; /* Prevents it from stretching too wide */
-    margin: 0 auto; /* Centers the container */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* Movie Card Styling */
 .movie-card {
     position: relative;
-    background-color: var(--primary-grey); /* Dark background */
+    background-color: var(--primary-grey);
     border-radius: 8px;
     padding: 10px;
     text-align: center;
@@ -112,10 +117,10 @@ body {
 }
 
 .movie-card:hover {
-    transform: scale(1.05); /* Small zoom effect on hover */
+    transform: scale(1.05);
 }
 
-/* Movie Poster Styling */
+/* Movie Poster */
 .movie-poster {
     width: 100%;
     height: auto;
@@ -129,40 +134,42 @@ body {
     margin-top: 8px;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////*/
-
-/* Favorite Button Styling (Top Right Corner) */
+/* ======================== */
+/* Favorite Button Styles */
+/* ======================== */
 .favorite-btn {
     position: absolute;
-    top: 3px;
-    right: 15px;
-    background: none;
+    top: 10px;
+    right: 10px;
+    background: rgb(61, 60, 60);
+    border-radius: 4px;
     border: none;
-    font-size: 30px;
-    color: var(--text-yellow); /* Always keep yellow border */
+    font-size: 40px;
+    color: var(--text-yellow);
+    padding: 3px;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
-/* Default outlined star (☆) */
 .favorite-btn::before {
-    content: "☆"; /* Outlined star */
-    color: var(--text-yellow); /* Keep border yellow always */
+    content: "☆";
+    color: var(--text-yellow);
 }
 
-/* Filled yellow star when favorited (Inside Yellow, Border Stays Yellow) */
 .favorite-btn.favorite::before {
-    content: "⭐"; /* Filled star */
-    color: var(--text-yellow); /* Only inside changes */
+    content: "⭐";
+    font-size: 25px;
+    color: var(--text-yellow);
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////*/
-/* Improved Search Suggestions Box */
+/* ======================== */
+/* Search Suggestions Box */
+/* ======================== */
 .suggestions-box {
     position: absolute;
-    top: 55px; /* Positions directly under search input */
+    top: 55px;
     left: 50%;
-    transform: translateX(-50%); /* Centers the box */
+    transform: translateX(-50%);
     width: 50%;
     background: var(--primary-grey);
     border-radius: 5px;
@@ -172,10 +179,9 @@ body {
     overflow-y: auto;
     margin-top: 5px;
     padding: 5px;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
-/* Each suggestion item */
 .suggestion-item {
     display: flex;
     align-items: center;
@@ -191,7 +197,6 @@ body {
     color: black;
 }
 
-/* Movie Poster in Suggestions */
 .suggestion-poster {
     width: 40px;
     height: 60px;
@@ -199,7 +204,6 @@ body {
     border-radius: 3px;
 }
 
-/* No Suggestions Text */
 .no-suggestions {
     padding: 10px;
     text-align: center;
