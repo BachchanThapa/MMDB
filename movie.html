@@ -2,28 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movie</title>
-  <link rel="stylesheet" href="./styles/style.css" />
-  <script src="https://kit.fontawesome.com/f300007e95.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="./styles/style.css">
   <script type="module" src="./scripts/script.js"></script>
 </head>
 
 <body>
-  <header>
-    <header class="header">
-      <div class="content-wrapper header__flex">
-        <a href="index.html"><img class="header__logo" src="./res/logo.png" alt="logotype" /></a>
-      </div>
-    </header>
+  <!-- ✅ Top Navigation Bar -->
+  <header class="header">
+    <div class="content-wrapper header__flex">
+      <a href="index.html">
+        <img class="header__logo" src="./res/logo.png" alt="My Movie Database">
+      </a>
+      <form id="searchForm" class="header__form">
+        <input type="text" id="searchInput" class="header__input" placeholder="Search for a movie..."
+          autocomplete="off">
+        <button type="submit" class="header__form-btn">Search</button>
+      </form>
+      <a href="favorites.html" class="header__fav-btn">Favorites</a>
+    </div>
+  </header>
 
-    <!-- Movie Detailed Informatin -->
-    <section>
-      <div class="content-wrapper">
-        <section class="movie-information" id="movieInformation">Movie Information</section>
-      </div>
-    </section>
+  <!-- ✅ Main Movie Information Section -->
+  <section class="content-wrapper">
+    <h2 class="movie-details-title">🎬 Movie Information 🎬</h2>
+    <div id="movieInformation" class="movie-details-container"></div>
+  </section>
 </body>
 
 </html>

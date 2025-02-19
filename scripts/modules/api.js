@@ -36,3 +36,20 @@ export async function searchMovies(query) {
         return []; // Return empty array on error
     }
 }
+
+// ============================
+// 🎬 Fetch Movie Details by IMDb ID
+// ============================
+export async function fetchMovieDetails(imdbID) {
+    const OMDB_API_KEY = "144f166d"; // Your OMDB API Key
+    try {
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbID}&plot=full`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch movie details");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching movie details:", error);
+        return null;
+    }
+}

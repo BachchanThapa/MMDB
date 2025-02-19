@@ -26,10 +26,10 @@ async function loadTrailers() {
 // ====================================
 async function loadTopMovies() {
     try {
-        let movies = await fetchTopMovies();
-        let topMovies = movies.slice(0, 20);
-        const cardContainer = document.getElementById("cardContainer");
-        cardContainer.innerHTML = ""; // Clear previous content
+        let movies = await fetchTopMovies(); // Fetch movies
+        let topMovies = movies.slice(0, 20); // Get top 20 movies
+
+        const cardContainer = document.getElementById("cardContainer"); // Select movie container
 
         topMovies.forEach(movie => {
             const movieCard = document.createElement("div");
@@ -37,21 +37,22 @@ async function loadTopMovies() {
 
             // Set movie poster or placeholder if missing
             const poster = movie.Poster !== "N/A" ? movie.Poster : "./res/missing-poster.svg";
+
+            // Check if the movie is already in favorites
             let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
             let isFavorite = favorites.includes(movie.imdbID);
-            let starClass = isFavorite ? "favorite" : "";
+            let starClass = isFavorite ? "favorite" : ""; // Apply filled style
 
-            // Add movie details with clickable title
+            // ✅ Clickable movie title to open movie.html with details
             movieCard.innerHTML = `
                 <button class="favorite-btn ${starClass}" data-imdbid="${movie.imdbID}"></button>
                 <img src="${poster}" alt="${movie.Title}" class="movie-poster"/>
-                <h3 class="movie-title">
-                    <a href="movie.html?imdbID=${movie.imdbID}" class="movie-link">${movie.Title}</a>
-                </h3>
+                <h3 class="movie-title"><a href="movie.html?imdbID=${movie.imdbID}">${movie.Title}</a></h3>
             `;
             cardContainer.appendChild(movieCard);
         });
 
+        // Attach event listeners to favorite buttons
         document.querySelectorAll(".favorite-btn").forEach(button => {
             button.addEventListener("click", toggleFavorite);
         });
@@ -59,7 +60,6 @@ async function loadTopMovies() {
         console.error("Error loading top movies:", error);
     }
 }
-
 
 // ====================================
 // Function to toggle favorite status
@@ -80,11 +80,68 @@ function toggleFavorite(event) {
 }
 
 // ==========================
-// Run the functions only on index.html
+// Function to load movie details on movie.html
+// ==========================
+async function loadMovieDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const imdbID = urlParams.get("imdbID");
+
+    if (!imdbID) return;
+
+    try {
+        const response = await fetch(`https://www.omdbapi.com/?apikey=144f166d&i=${imdbID}&plot=full`);
+        const movie = await response.json();
+
+        if (!movie || movie.Response === "False") {
+            document.getElementById("movieInformation").innerHTML = "<p>Movie details not found.</p>";
+            return;
+        }
+
+        // ✅ Construct the Movie Information HTML
+        document.getElementById("movieInformation").innerHTML = `
+            <div class="movie-container">
+                <img src="${movie.Poster !== "N/A" ? movie.Poster : "./res/missing-poster.svg"}" alt="${movie.Title}" class="movie-poster-large">
+                <div class="movie-info">
+                    <h2>${movie.Title}</h2>
+                    <p class="movie-stats">Rated: ${movie.Rated} | Genre: ${movie.Genre} | Runtime: ${movie.Runtime} | Released: ${movie.Released}</p>
+                    <p class="movie-rating">Ratings: ${movie.imdbRating}/10</p>
+                    <p class="movie-plot"><strong>Plot</strong>: ${movie.Plot}</p>
+                    <p><strong>Director:</strong> ${movie.Director}</p>
+                    <p><strong>Writer:</strong> ${movie.Writer}</p>
+                    <p><strong>Actors:</strong> ${movie.Actors}</p>
+                </div>
+                <button class="favorite-btn" data-imdbid="${movie.imdbID}"></button>
+            </div>
+        `;
+
+        // ✅ Check if movie is already in favorites
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        let favoriteButton = document.querySelector(".favorite-btn");
+
+        if (favorites.includes(movie.imdbID)) {
+            favoriteButton.classList.add("favorite");
+        }
+
+        // ✅ Add event listener for favorite toggle
+        favoriteButton.addEventListener("click", function () {
+            toggleFavorite(movie.imdbID, favoriteButton);
+        });
+
+    } catch (error) {
+        console.error("Error loading movie details:", error);
+    }
+}
+
+// ==========================
+// Run functions based on the current page
 // ==========================
 if (window.location.pathname.includes("index.html")) {
     loadTrailers();
     loadTopMovies();
+}
+
+if (window.location.pathname.includes("movie.html")) {
+    loadMovieDetails();
 }
 
 // ==========================
@@ -149,7 +206,7 @@ async function loadSearchResults() {
             movieCard.innerHTML = `
                 <button class="favorite-btn ${starClass}" data-imdbid="${movie.imdbID}"></button>
                 <img src="${poster}" alt="${movie.Title}" class="movie-poster"/>
-                <h3 class="movie-title">${movie.Title}</h3>
+                <h3 class="movie-title"><a href="movie.html?imdbID=${movie.imdbID}">${movie.Title}</a></h3>
             `;
             cardContainer.appendChild(movieCard);
         });

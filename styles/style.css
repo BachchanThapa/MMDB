@@ -250,11 +250,6 @@ body {
     margin-bottom: 20px;
 }
 
-#favoritesHeader::before,
-#favoritesHeader::after {
-    content: " 🎬 "; /* Add clapperboard emoji with spacing */
-    font-size: 24px; /* Match text size */
-}
 /* ======================== */
 /* Favorite, favorites.html */
 /* ======================== */
@@ -265,11 +260,6 @@ body {
     font-weight: bold;
     text-transform: capitalize;
     margin-bottom: 20px;
-}
-#favoritesTitle::before,
-#favoritesTitle::after {
-    content: " 🎬 "; /* Add clapperboard emoji with spacing */
-    font-size: 24px; /* Match text size */
 }
 
 /* ======================== */
@@ -282,8 +272,95 @@ body {
     text-transform: capitalize;
     margin-bottom: 20px;
 }
-#movieInformation::before,
-#movieInformation::after {
-    content: " 🎬 "; /* Add clapperboard emoji with spacing */
-    font-size: 24px; /* Match text size */
+.movie-details-title {
+    text-align: center;
+    margin-bottom:10px;
+}
+
+
+
+
+
+
+
+
+
+
+/* ======================== */
+/* 📌 MOVIE DETAILS PAGE LAYOUT */
+/* ======================== */
+
+.movie-detail-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 2 Columns: Left (Poster), Right (Text) */
+    gap: 20px; /* Space between columns */
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: var(--primary-grey);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ✅ Left Column (Title & Poster) */
+.movie-left {
+    display: grid;
+    grid-template-rows: auto 1fr; /* 2 Rows: Title (Auto) + Poster (Full Height) */
+    align-items: start;
+}
+
+.movie-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* ✅ Poster */
+.movie-poster-container {
+    display: flex;
+    justify-content: center;
+}
+
+.movie-detail-poster {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+}
+
+/* ✅ Right Column (Movie Info - 3 Rows) */
+.movie-info {
+    display: grid;
+    grid-template-rows: auto auto auto; /* 3 Rows: Details, Plot, Cast */
+    gap: 10px;
+}
+
+.movie-info p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ✅ Horizontal Separator */
+.movie-info hr {
+    border: 0;
+    height: 1px;
+    background: white;
+    margin: 10px 0;
+}
+
+
+/* ======================== */
+/* 📌 MOBILE RESPONSIVE DESIGN */
+/* ======================== */
+@media screen and (max-width: 768px) {
+    .movie-detail-wrapper {
+        grid-template-columns: 1fr; /* Stack on small screens */
+    }
+
+    .movie-left {
+        grid-template-rows: auto auto; /* Stack Title & Poster */
+    }
+
+    .movie-info {
+        grid-template-rows: auto auto auto;
+    }
 }
