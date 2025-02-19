@@ -26,10 +26,10 @@ async function loadTrailers() {
 // ====================================
 async function loadTopMovies() {
     try {
-        let movies = await fetchTopMovies(); // Fetch movies
-        let topMovies = movies.slice(0, 20); // Get top 20 movies
-
-        const cardContainer = document.getElementById("cardContainer"); // Select movie container
+        let movies = await fetchTopMovies();
+        let topMovies = movies.slice(0, 20);
+        const cardContainer = document.getElementById("cardContainer");
+        cardContainer.innerHTML = ""; // Clear previous content
 
         topMovies.forEach(movie => {
             const movieCard = document.createElement("div");
@@ -37,22 +37,21 @@ async function loadTopMovies() {
 
             // Set movie poster or placeholder if missing
             const poster = movie.Poster !== "N/A" ? movie.Poster : "./res/missing-poster.svg";
-
-            // Check if the movie is already in favorites
             let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
             let isFavorite = favorites.includes(movie.imdbID);
-            let starClass = isFavorite ? "favorite" : ""; // Apply filled style
+            let starClass = isFavorite ? "favorite" : "";
 
-            // Add movie details including the favorite button
+            // Add movie details with clickable title
             movieCard.innerHTML = `
                 <button class="favorite-btn ${starClass}" data-imdbid="${movie.imdbID}"></button>
                 <img src="${poster}" alt="${movie.Title}" class="movie-poster"/>
-                <h3 class="movie-title">${movie.Title}</h3>
+                <h3 class="movie-title">
+                    <a href="movie.html?imdbID=${movie.imdbID}" class="movie-link">${movie.Title}</a>
+                </h3>
             `;
             cardContainer.appendChild(movieCard);
         });
 
-        // Attach event listeners to favorite buttons
         document.querySelectorAll(".favorite-btn").forEach(button => {
             button.addEventListener("click", toggleFavorite);
         });
@@ -60,6 +59,7 @@ async function loadTopMovies() {
         console.error("Error loading top movies:", error);
     }
 }
+
 
 // ====================================
 // Function to toggle favorite status
