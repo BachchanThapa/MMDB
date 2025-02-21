@@ -79,58 +79,6 @@ function toggleFavorite(event) {
     localStorage.setItem("favorites", JSON.stringify(favorites)); // Save to localStorage
 }
 
-// ==========================
-// Function to load movie details on movie.html
-// ==========================
-async function loadMovieDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const imdbID = urlParams.get("imdbID");
-
-    if (!imdbID) return;
-
-    try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=144f166d&i=${imdbID}&plot=full`);
-        const movie = await response.json();
-
-        if (!movie || movie.Response === "False") {
-            document.getElementById("movieInformation").innerHTML = "<p>Movie details not found.</p>";
-            return;
-        }
-
-        // ✅ Construct the Movie Information HTML
-        document.getElementById("movieInformation").innerHTML = `
-            <div class="movie-container">
-                <img src="${movie.Poster !== "N/A" ? movie.Poster : "./res/missing-poster.svg"}" alt="${movie.Title}" class="movie-poster-large">
-                <div class="movie-info">
-                    <h2>${movie.Title}</h2>
-                    <p class="movie-stats">Rated: ${movie.Rated} | Genre: ${movie.Genre} | Runtime: ${movie.Runtime} | Released: ${movie.Released}</p>
-                    <p class="movie-rating">Ratings: ${movie.imdbRating}/10</p>
-                    <p class="movie-plot"><strong>Plot</strong>: ${movie.Plot}</p>
-                    <p><strong>Director:</strong> ${movie.Director}</p>
-                    <p><strong>Writer:</strong> ${movie.Writer}</p>
-                    <p><strong>Actors:</strong> ${movie.Actors}</p>
-                </div>
-                <button class="favorite-btn" data-imdbid="${movie.imdbID}"></button>
-            </div>
-        `;
-
-        // ✅ Check if movie is already in favorites
-        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-        let favoriteButton = document.querySelector(".favorite-btn");
-
-        if (favorites.includes(movie.imdbID)) {
-            favoriteButton.classList.add("favorite");
-        }
-
-        // ✅ Add event listener for favorite toggle
-        favoriteButton.addEventListener("click", function () {
-            toggleFavorite(movie.imdbID, favoriteButton);
-        });
-
-    } catch (error) {
-        console.error("Error loading movie details:", error);
-    }
-}
 
 // ==========================
 // Run functions based on the current page
