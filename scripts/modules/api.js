@@ -41,13 +41,18 @@ export async function searchMovies(query) {
 // 🎬 Fetch Movie Details by IMDb ID
 // ============================
 export async function fetchMovieDetails(imdbID) {
-    const OMDB_API_KEY = "144f166d"; // Your OMDB API Key
+    console.log("Fetching Movie Details for IMDb ID:", imdbID); // ✅ Debug
+
     try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbID}&plot=full`);
-        if (!response.ok) {
-            throw new Error("Failed to fetch movie details");
+        const response = await fetch(`https://www.omdbapi.com/?apikey=144f166d&i=${imdbID}&plot=full`);
+        const data = await response.json();
+        console.log("API Response:", data); // ✅ Debug API result
+
+        if (data.Response === "False") {
+            console.error("API Error:", data.Error);
+            return null;
         }
-        return await response.json();
+        return data;
     } catch (error) {
         console.error("Error fetching movie details:", error);
         return null;

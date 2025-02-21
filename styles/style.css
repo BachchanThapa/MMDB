@@ -277,90 +277,106 @@ body {
     margin-bottom:10px;
 }
 
-
-
-
-
-
-
-
-
-
 /* ======================== */
-/* 📌 MOVIE DETAILS PAGE LAYOUT */
+/* MOVIE DETAILS PAGE  LAYOUT */
 /* ======================== */
 
+.movie-details-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ✅ Main Wrapper (Side-by-side Layout) */
 .movie-detail-wrapper {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* 2 Columns: Left (Poster), Right (Text) */
-    gap: 20px; /* Space between columns */
-    max-width: 1000px;
-    margin: 20px auto;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    max-width: 1200px;
+    margin: 10px auto;
     background-color: var(--primary-grey);
     padding: 20px;
     border-radius: 10px;
+    align-items: center;
 }
 
-/* ✅ Left Column (Title & Poster) */
-.movie-left {
-    display: grid;
-    grid-template-rows: auto 1fr; /* 2 Rows: Title (Auto) + Poster (Full Height) */
-    align-items: start;
-}
-
-.movie-title {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* ✅ Poster */
-.movie-poster-container {
+/* ✅ New container for the title */
+.movie-title-container {
     display: flex;
     justify-content: center;
-}
-
-.movie-detail-poster {
+    align-items: center;
     width: 100%;
-    max-width: 250px;
-    border-radius: 5px;
 }
 
-/* ✅ Right Column (Movie Info - 3 Rows) */
+
+
+/* ✅ Movie Title Positioned Above the Poster */
+.movie-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-yellow);
+    margin-bottom: 15px; /* ✅ Adds space between title and poster */
+    margin-top: 20px; /* ✅ Adds space from the top */
+}
+
+
+
+
+/* ✅ Centered Movie Title Over Poster */
+.movie-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+/* ✅ Right Column (Movie Info) */
 .movie-info {
-    display: grid;
-    grid-template-rows: auto auto auto; /* 3 Rows: Details, Plot, Cast */
-    gap: 10px;
-}
-
-.movie-info p {
-    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    font-size: 18px;
     line-height: 1.5;
+    margin-right: 40px;
 }
 
-/* ✅ Horizontal Separator */
-.movie-info hr {
-    border: 0;
-    height: 1px;
-    background: white;
-    margin: 10px 0;
+/* 🎬 First Section: Ratings & Genre */
+.movie-stats {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 📖 Second Section: Plot */
+.movie-plot {
+    margin-top: 15px;
+    font-size: 17px;
+    text-align: justify;
 }
 
 
-/* ======================== */
-/* 📌 MOBILE RESPONSIVE DESIGN */
-/* ======================== */
+
+
+
+
+/* 📌 MOBILE RESPONSIVE FIX */
 @media screen and (max-width: 768px) {
     .movie-detail-wrapper {
-        grid-template-columns: 1fr; /* Stack on small screens */
-    }
-
-    .movie-left {
-        grid-template-rows: auto auto; /* Stack Title & Poster */
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 
     .movie-info {
-        grid-template-rows: auto auto auto;
+        text-align: center;
+        gap: 10px;
     }
 }
+
+
+
+
