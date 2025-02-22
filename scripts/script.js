@@ -238,3 +238,16 @@ if (searchInput) {
 if (window.location.pathname.includes("search.html")) {
     loadSearchResults();
 }
+
+
+//for favorites page 
+// Check if the current page is favorites.html
+if (window.location.pathname.includes("favorites.html")) {
+    // Dynamically import the favorites module and run loadFavorites.
+    import("./modules/favorites.js")
+      .then(module => {
+        module.loadFavorites();
+      })
+      .catch(error => console.error("Error loading favorites module:", error));
+  }
+  

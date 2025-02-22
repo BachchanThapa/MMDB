@@ -272,6 +272,7 @@ body {
     border: none;
     cursor: pointer;
     padding-right: 40px;
+    margin-top: -10px;
 }
 
 /* ✅ Default empty star */
@@ -319,11 +320,11 @@ body {
 
 
 /* ======================== */
-/* 🎬 MOVIE DETAILS TITLE (ONLY FOR movie.html) */
+/* 🎬 MOVIE DETAILS TITLE (ONLY FOR movie.html page) */
 /* ======================== */
 .movie-detail-title {
     text-align: left;  /* ✅ Align title to the left */
-    font-size: 30px;   /* ✅ Set a larger font size than index.html */
+    font-size: 24px;   /* ✅ Set a larger font size than index.html */
     font-weight: bold;
     color: var(--text-yellow);
     margin-bottom: 10px; /* ✅ Adds space between title and poster */
@@ -400,7 +401,23 @@ body {
     font-weight: bold;
 }
 
+
+/* ======================== */
+/* 🎬 Favorites PAGE LAYOUT */
+/* ======================== */
+
+.favorites-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* ======================== */
 /* ✅ Adjust text size for smaller screens */
+/* ======================== */
+
 @media screen and (max-width: 768px) {
     .movie-meta {
         flex-direction: column;

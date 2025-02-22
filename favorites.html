@@ -10,12 +10,24 @@
   <script type="module" src="./scripts/script.js"></script>
 </head>
 
+
+
 <body>
+  <!-- ✅ Top Navigation Bar -->
   <header class="header">
     <div class="content-wrapper header__flex">
-      <a href="index.html"><img class="header__logo" src="./res/logo.png" alt="logotype" /></a>
+      <a href="index.html">
+        <img class="header__logo" src="./res/logo.png" alt="My Movie Database">
+      </a>
+      <form id="searchForm" class="header__form">
+        <input type="text" id="searchInput" class="header__input" placeholder="Search for a movie..."
+          autocomplete="off">
+        <button type="submit" class="header__form-btn">Search</button>
+      </form>
+
     </div>
   </header>
+
 
   <!-- Favorite movies section -->
   <section>
