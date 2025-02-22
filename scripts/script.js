@@ -88,9 +88,9 @@ if (window.location.pathname.includes("index.html")) {
     loadTopMovies();
 }
 
-if (window.location.pathname.includes("movie.html")) {
-    loadMovieDetails();
-}
+//if (window.location.pathname.includes("movie.html")) {=============Remove if it works========
+//    loadMovieDetails();
+//}
 
 // ==========================
 // Function to handle search submission
