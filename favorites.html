@@ -10,26 +10,24 @@
   <script type="module" src="./scripts/script.js"></script>
 </head>
 
-
-
 <body>
-  <!-- ✅ Top Navigation Bar -->
+  <!-- Top Navigation Bar with Search & Live Suggestions -->
   <header class="header">
     <div class="content-wrapper header__flex">
       <a href="index.html">
         <img class="header__logo" src="./res/logo.png" alt="My Movie Database">
       </a>
       <form id="searchForm" class="header__form">
-        <input type="text" id="searchInput" class="header__input" placeholder="Search for a movie..."
-          autocomplete="off">
+        <input type="text" id="searchInput" class="header__input" placeholder="Search for a movie..." autocomplete="off"
+          aria-label="Search">
         <button type="submit" class="header__form-btn">Search</button>
+        <!-- Live Search Suggestions Box -->
+        <div id="suggestionBox" class="suggestions-box"></div>
       </form>
-
     </div>
   </header>
 
-
-  <!-- Favorite movies section -->
+  <!-- Favorite Movies Section -->
   <section>
     <div class="content-wrapper">
       <h2 class="favorites-title" id="favoritesTitle">🎬 Your favorites 🎬</h2>
