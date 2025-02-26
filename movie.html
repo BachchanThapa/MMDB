@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Details</title>
   <link rel="stylesheet" href="./styles/style.css">
-  <!-- Load search functionality -->
+
   <script type="module" src="./scripts/script.js"></script>
-  <!-- Load movie details functionality -->
   <script type="module" src="./scripts/modules/movieDetails.js"></script>
 </head>
 
 <body>
-  <!-- Top Navigation Bar with Search -->
   <header class="header">
     <div class="content-wrapper header__flex">
       <a href="index.html">
@@ -23,18 +21,18 @@
         <input type="text" id="searchInput" class="header__input" placeholder="Search for a movie..." autocomplete="off"
           aria-label="Search">
         <button type="submit" class="header__form-btn">Search</button>
-        <!-- Live Search Suggestions Box -->
         <div id="suggestionBox" class="suggestions-box"></div>
       </form>
       <a href="favorites.html" class="header__fav-btn">Favorites</a>
     </div>
   </header>
 
-  <!-- Movie Details Section -->
-  <section class="content-wrapper">
-    <h2 class="movie-details-title">🎬 Movie Information 🎬</h2>
-    <div id="movieInformation"></div>
-  </section>
+  <main>
+    <section class="content-wrapper">
+      <h2 class="movie-details-title">🎬 Movie Information 🎬</h2>
+      <div id="movieInformation"></div>
+    </section>
+  </main>
 </body>
 
 </html>
