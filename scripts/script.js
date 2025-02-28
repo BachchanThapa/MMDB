@@ -103,7 +103,7 @@ function handleSearch(event) {
 
     try {
         if (!query) {
-            throw new Error("Please Write the Movie Name here!"); // Throws an error if input is empty
+            throw new Error("Please Enter the Movie Name here !!!"); // Throws an error if input is empty
         }
 
         // If input is valid, reset styles and go to search results
