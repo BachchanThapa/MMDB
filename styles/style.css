@@ -401,6 +401,33 @@ body {
     text-transform: capitalize;
     margin-bottom: 10px;
 }
+ /* =========== Favorites PAGE LAYOUT . Two ICONS alignment=========*/
+/* ✅ Fix logo alignment in favorites.html */
+body.favorites-page .header__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures logos & search are evenly spaced */
+    width: 100%;
+    max-width: 1200px;  /* Slightly wider for balance */
+    margin: 0 auto;
+    padding: 10px 20px; /* Adds balanced spacing */
+}
+
+/* ✅ Ensure both logos are equal in size */
+body.favorites-page .header__logo {
+    width: 150px; /* Adjust if necessary */
+    height: auto;
+}
+
+/* ✅ Center the search bar properly */
+body.favorites-page .header__form {
+    flex-grow: 1; /* Makes search bar take up available space */
+    max-width: 600px; /* Ensures search bar doesn’t stretch too much */
+    text-align: center;
+}
+
+
+
 
 /* ======================== */
 /* Responsiveness-- Adjust text size for smaller screens */
