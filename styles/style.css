@@ -116,7 +116,7 @@ body {
     margin: 0 auto;
 }
 
-/* ✅ MOVIE CARD */
+/* MOVIE CARD */
 .movie-card {
     position: relative;
     background-color: var(--primary-grey);
@@ -135,21 +135,21 @@ body {
     transform: scale(1.1);
 }
 
-/* ✅ MOVIE POSTER */
+/* MOVIE POSTER */
 .movie-poster {
     width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
-/* ✅ MOVIE TITLE */
+/* MOVIE TITLE */
 .movie-title {
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
 }
 
-/* ✅ MOVIE TITLE AS LINK */
+/* MOVIE TITLE AS LINK */
 .movie-title a {
     text-decoration: none;
     color:white;
@@ -197,9 +197,9 @@ body {
 /* ======================== */
 .suggestions-box {
     position: absolute;
-    top: 100%; /* ✅ Positions it right below the search bar */
-    right: 33%; /* ✅ Aligns it with the input field */
-    width: 50%; /* ✅ Matches the width of the search bar */
+    top: 100%;         /* Positions it right below the search bar */
+    right: 33%;        /* Aligns it with the input field */
+    width: 50%;        /* Matches the width of the search bar */
     background: var(--primary-grey);
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
@@ -210,12 +210,12 @@ body {
     display: none;
 }
 
-/* ✅ Ensure parent search form has relative positioning */
+/* Ensure parent search form has relative positioning */
 .header__form {
     position: relative;
 }
 
-/* ✅ Each suggestion item */
+/* Each suggestion item */
 .suggestion-item {
     display: flex;
     align-items: center;
@@ -231,7 +231,7 @@ body {
     color: var(--primary-grey);
 }
 
-/* ✅ Movie Poster in Suggestions */
+/* Movie Poster in Suggestions */
 .suggestion-poster {
     margin-top: 3px;
     width: 40px;
@@ -240,7 +240,7 @@ body {
     border-radius: 3px;
 }
 
-/* ✅ No Suggestions Text */
+/* No Suggestions Text */
 .no-suggestions {
     padding: 10px;
     text-align: center;
@@ -249,7 +249,7 @@ body {
 
 #favoritesHeader {
     text-align: center;
-    font-size: 24px; /* ✅ Reduced size */
+    font-size: 24px; 
     font-weight: bold;
     text-transform: capitalize;
     margin-bottom: 10px;
@@ -259,17 +259,17 @@ body {
 /* ⭐ FAVORITE BUTTON (STAR) - MOVIE.HTML ONLY-- because it has STAR icon on  different place.*/
 /* ======================== */
 .movie-detail-wrapper {
-    position: relative; /* ✅ Needed to correctly position the favorite button */
+    position: relative; /* Needed to correctly position the favorite button */
 }
 
-/* ✅ Favorite button container */
+/* Favorite button container */
 .movie-detail-wrapper .favorite-container {
     position: absolute;
     top: 0px;
     right: 0px;
 }
 
-/* ✅ Star button inside movie.html */
+/* Star button inside movie.html */
 .movie-detail-wrapper .favorite-btn {
     font-size: 48px;
     color: var(--text-yellow);
@@ -382,9 +382,9 @@ body {
     font-size: 16px;
 }
 
-/* ✅ Each section (Director, Writer, Actors) */
+/* Each section (Director, Writer, Actors) */
 .meta-item {
-    flex: 1; /* ✅ Ensures equal width */
+    flex: 1; /*Ensures equal width */
     text-align: center;
     font-weight: bold;
 }
@@ -402,7 +402,7 @@ body {
     margin-bottom: 10px;
 }
  /* =========== Favorites PAGE LAYOUT . Two ICONS alignment=========*/
-/* ✅ Fix logo alignment in favorites.html */
+/* Fix logo alignment in favorites.html */
 body.favorites-page .header__flex {
     display: flex;
     align-items: center;
@@ -413,13 +413,13 @@ body.favorites-page .header__flex {
     padding: 10px 20px; /* Adds balanced spacing */
 }
 
-/* ✅ Ensure both logos are equal in size */
+/* Ensure both logos are equal in size */
 body.favorites-page .header__logo {
     width: 150px; /* Adjust if necessary */
     height: auto;
 }
 
-/* ✅ Center the search bar properly */
+/* Center the search bar properly */
 body.favorites-page .header__form {
     flex-grow: 1; /* Makes search bar take up available space */
     max-width: 600px; /* Ensures search bar doesn’t stretch too much */
@@ -433,7 +433,7 @@ body.favorites-page .header__form {
 /* Responsiveness-- Adjust text size for smaller screens */
 /* ======================== */
 
-/* 📌 MOBILE RESPONSIVE FIX */
+/* MOBILE RESPONSIVE FIX */
 @media screen and (max-width: 768px) {
     /* Stack header elements on smaller screens */
     .header__flex {
@@ -451,19 +451,19 @@ body.favorites-page .header__form {
         width: 80%;
     }
 
-    /* ✅ Adjust movie layout */
+    /* Adjust movie layout */
     .movie-detail-wrapper {
         grid-template-columns: 1fr;
         text-align: center;
     }
 
-    /* ✅ Make movie meta information stack */
+    /* Make movie meta information stack */
     .movie-meta {
         flex-direction: column;
         text-align: center;
     }
 
-    /* ✅ Mobile Optimization for Search Suggestions */
+    /* Mobile Optimization for Search Suggestions */
     .suggestions-box {
         width: 90%;
         left: 50%;
