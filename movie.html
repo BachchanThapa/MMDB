@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="./styles/style.css">
+
+  <script type="module" src="./scripts/script.js"></script>
+  <script type="module" src="./scripts/modules/movieDetails.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="content-wrapper header__flex">
+      <a href="index.html">
+        <img class="header__logo" src="./res/logo.png" alt="My Movie Database">
+      </a>
+      <!-- ✅ Search Form (Now with live suggestions) -->
+      <form class="header__form" id="searchForm">
+        <input class="header__input" id="searchInput" type="text" placeholder="Search for a movie..." autocomplete="off"
+          aria-label="Search" />
+        <button class="header__form-btn" id="searchBtn">Search</button>
+        <!-- ✅ Live Search Suggestions Box -->
+        <div id="suggestionBox" class="suggestions-box"></div>
+      </form>
+      <a href="favorites.html" class="header__fav-btn">Favorites</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="content-wrapper">
+      <h2 class="movie-details-title">🎬 Movie Information 🎬</h2>
+      <div id="movieInformation"></div>
+    </section>
+  </main>
+</body>
+
+</html>

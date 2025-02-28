@@ -1,0 +1,474 @@
+@import url('./carousel.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+/* ======================== */
+/* 🌟 VARIABLES */
+/* ======================== */
+:root {
+    --header-grey: #121212;
+    --primary-bg: #000000;
+    --primary-white: #ffffff;
+    --primary-grey: #1A1A1A;
+    --text-yellow: #F5C518;
+}
+
+/* ======================== */
+/* 🌟 BASE STYLES */
+/* ======================== */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-white);
+    font-family: "Montserrat", sans-serif;
+}
+
+/* ======================== */
+/* 🌟 HEADER STYLES */
+/* ======================== */
+.header {
+    background-color: var(--header-grey);
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.header__logo {
+    width: 150px;
+}
+
+.header__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps logo left, search center, and favorites right */
+    width: 100%;
+    max-width: 1200px; /* Prevents stretching on large screens */
+    margin: 0 auto;
+    padding: 10px; /* Adds some spacing */
+}
+
+.header__form {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 100%; /* Full width on smaller screens */
+    margin: 10px 20px; /* Consistent spacing */
+}
+
+.header__input {
+    width: 100%; /* Allows it to resize dynamically */
+    max-width: 500px; /* Keeps it reasonable on large screens */
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+}
+
+
+.header__form-btn {
+    background: wheat;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.header__fav-btn {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--text-yellow);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ======================== */
+/* 🎬 FIXED TRAILER SECTION WIDTH */
+/* ======================== */
+.trailers {
+    max-width: 1200px; /* Caroussel width */
+    margin: 0 auto;
+}
+
+/* ======================== */
+/* 🌟 FIXED "OUR RECOMMENDATIONS" */
+/* ======================== */
+.popular-title {   /*Our Recommentions */
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+/* ======================== */
+/* 🎬 MOVIE CARD STYLES */
+/* ======================== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* MOVIE CARD */
+.movie-card {
+    position: relative;
+    background-color: var(--primary-grey);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.movie-card:hover {
+    transform: scale(1.1);
+}
+
+/* MOVIE POSTER */
+.movie-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* MOVIE TITLE */
+.movie-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* MOVIE TITLE AS LINK */
+.movie-title a {
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.movie-title a:hover {
+    color:var(--text-yellow);
+}
+
+/* ======================== */
+/* ⭐ FAVORITE BUTTON (STAR) */
+/* ======================== */
+.favorite-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: var(--primary-grey);
+    border-radius: 5px;
+    border: none;
+    font-size: 32px;
+    color: var(--text-yellow);
+    padding: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Default outlined star (☆) */
+.favorite-btn::before {
+    content: "☆";
+}
+
+/* Filled yellow star when favorited */
+.favorite-btn.favorite::before {
+    content: "⭐";
+}
+
+/* ======================== */
+/* 🔍  SEARCH SUGGESTIONS BOX */
+/* ======================== */
+.suggestions-box {
+    position: absolute;
+    top: 100%;         /* Positions it right below the search bar */
+    right: 33%;        /* Aligns it with the input field */
+    width: 50%;        /* Matches the width of the search bar */
+    background: var(--primary-grey);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 5px;
+    display: none;
+}
+
+/* Ensure parent search form has relative positioning */
+.header__form {
+    position: relative;
+}
+
+/* Each suggestion item */
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.suggestion-item:hover {
+    background: var(--text-yellow);
+    color: var(--primary-grey);
+}
+
+/* Movie Poster in Suggestions */
+.suggestion-poster {
+    margin-top: 3px;
+    width: 40px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+/* No Suggestions Text */
+.no-suggestions {
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+#favoritesHeader {
+    text-align: center;
+    font-size: 24px; 
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+/* ======================== */
+/* ⭐ FAVORITE BUTTON (STAR) - MOVIE.HTML ONLY-- because it has STAR icon on  different place.*/
+/* ======================== */
+.movie-detail-wrapper {
+    position: relative; /* Needed to correctly position the favorite button */
+}
+
+/* Favorite button container */
+.movie-detail-wrapper .favorite-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+/* Star button inside movie.html */
+.movie-detail-wrapper .favorite-btn {
+    font-size: 48px;
+    color: var(--text-yellow);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-right: 50px;
+    margin-top: -10px;
+}
+
+/* INDEX.HTML -Landing page Movie Title Positioned under the Poster */
+.movie-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-yellow);
+    margin-top: 10px;
+}
+
+/* ======================== */
+/* 🎬 MOVIE DETAILS PAGE LAYOUT */
+/* ======================== */
+
+/*==========Movie Information===========*/
+.movie-details-title { 
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+/*=Main Wrapper (Side-by-side Layout)===*/
+.movie-detail-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    max-width: 1200px;
+    margin: 10px auto;
+    background-color: var(--primary-grey);
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+/*===== New container for the title==== */
+.movie-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* ====ONLY FOR movie.html title inside the wrapper=== */
+.movie-detail-title {
+    text-align: left;  /* Align title to the left */
+    font-size: 24px;   /* Set a larger font size than index.html */
+    font-weight: bold;
+    color: var(--text-yellow); 
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 10px; /* Adds space between title and poster */
+}
+
+/*Centered Movie Title Over Poster */
+.movie-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Right Column (Movie Info) */
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-right: 40px;
+    margin-top: 40px;
+}
+
+/*===========Section dividers========== */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+/* Hide elements with the .hidden class */
+.hidden {
+    display: none;
+  }
+  
+  /* Style the "Read more/Read less" link */
+  .more-link {
+    color: var(--text-yellow);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+/* =========Styling (Director, Writer, Actors)=============== */
+.movie-meta {
+    display: flex;
+    justify-content: space-between; /* Ensures spacing between sections */
+    gap: 30px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+/* Each section (Director, Writer, Actors) */
+.meta-item {
+    flex: 1; /*Ensures equal width */
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* ======================== */
+/* 🎬 Favorites PAGE LAYOUT */
+/* ======================== */
+
+.favorites-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+ /* =========== Favorites PAGE LAYOUT . Two ICONS alignment=========*/
+/* Fix logo alignment in favorites.html */
+body.favorites-page .header__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures logos & search are evenly spaced */
+    width: 100%;
+    max-width: 1200px;  /* Slightly wider for balance */
+    margin: 0 auto;
+    padding: 10px 20px; /* Adds balanced spacing */
+}
+
+/* Ensure both logos are equal in size */
+body.favorites-page .header__logo {
+    width: 150px; /* Adjust if necessary */
+    height: auto;
+}
+
+/* Center the search bar properly */
+body.favorites-page .header__form {
+    flex-grow: 1; /* Makes search bar take up available space */
+    max-width: 600px; /* Ensures search bar doesn’t stretch too much */
+    text-align: center;
+}
+
+
+
+
+/* ======================== */
+/* Responsiveness-- Adjust text size for smaller screens */
+/* ======================== */
+
+/* MOBILE RESPONSIVE FIX */
+@media screen and (max-width: 768px) {
+    /* Stack header elements on smaller screens */
+    .header__flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Make Search Bar Smaller */
+    .header__form {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .header__input {
+        width: 80%;
+    }
+
+    /* Adjust movie layout */
+    .movie-detail-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Make movie meta information stack */
+    .movie-meta {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Mobile Optimization for Search Suggestions */
+    .suggestions-box {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        max-height: 200px;
+    }
+}
