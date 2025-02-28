@@ -1,5 +1,5 @@
 // ==========================
-// 🎬 Create a Movie Card Element
+// 🎬 Creating a Movie Card Element
 // ==========================
 // This function generates a movie card with an image, title, and link to details.
 export function createMovieCard(movie) {

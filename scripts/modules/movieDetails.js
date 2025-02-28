@@ -1,5 +1,5 @@
 // ============================
-// 🎬 Import API Helper
+// 🎬 Importing API Helper
 // ============================
 import { fetchMovieDetails } from "../modules/api.js";
 

@@ -1,5 +1,5 @@
 // ==========================
-// 🎬 Import API Helper
+// 🎬 Importing API Helper
 // ==========================
 import { fetchMovieDetails } from "./api.js";
 
@@ -55,7 +55,7 @@ export async function loadFavorites() {
 }
 
 // ==========================
-// 🎬 Create Movie Card for Favorites
+// 🎬 Creating Movie Card for Favorites
 // ==========================
 function createMovieCard(movie) {
     const card = document.createElement("div");

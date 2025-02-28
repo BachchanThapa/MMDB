@@ -1,5 +1,5 @@
 // ==========================
-// 🌟 Import necessary functions
+// Importing necessary functions
 // ==========================
 import { fetchTopMovies, searchMovies } from './modules/api.js';
 import { renderTrailers } from './modules/caroussel.js';
@@ -91,7 +91,7 @@ function toggleFavorite(event) {
 
 
 // ==========================
-// 🔍 Handle Search Submission
+// 🔍 Handling Search Submission
 // ==========================
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
@@ -132,7 +132,7 @@ if (searchForm) {
 
 
 // ==========================
-// 🔍 Load Search Results on search.html
+// 🔍 Loading Search Results on search.html
 // ==========================
 async function loadSearchResults() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -167,7 +167,7 @@ async function loadSearchResults() {
 }
 
 // ==========================
-// 📌 Live Search Suggestions
+//  Live Search Suggestions
 // ==========================
 const suggestionBox = document.getElementById("suggestionBox");
 
@@ -232,7 +232,7 @@ if (searchInput) {
 }
 
 // ==========================
-// 📌 Run Functions Based on Current Page
+//  Run Functions Based on Current Page
 // ==========================
 if (window.location.pathname.includes("index.html")) {
     loadTrailers();
@@ -243,7 +243,7 @@ if (window.location.pathname.includes("search.html")) {
     loadSearchResults();
 }
 
-// ✅ Load favorites dynamically
+// Load favorites dynamically
 if (window.location.pathname.includes("favorites.html")) {
     import("./modules/favorites.js")
         .then(module => module.loadFavorites())
