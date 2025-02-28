@@ -60,7 +60,10 @@ function createMovieCard(movie) {
     let starClass = isFavorite ? "favorite" : "";
 
     card.innerHTML = `
-        <button class="favorite-btn ${starClass}" data-imdbid="${movie.imdbID}"></button>
+        <button class="favorite-btn ${starClass}" data-imdbid="${movie.imdbID}" aria-label="Toggle favorite for ${movie.Title}">
+            
+        </button>
+
         <img src="${poster}" alt="${movie.Title}" class="movie-poster"/>
         <h3 class="movie-title"><a href="movie.html?imdbID=${movie.imdbID}">${movie.Title}</a></h3>
     `;
