@@ -242,22 +242,35 @@ if (searchInput) {
     searchInput.addEventListener("input", showSuggestions);
 }
 
-// ==========================
-//  Run Functions Based on Current Page
+/// ==========================
+//  Run Functions Based on Current Page (element detection)
 // ==========================
 document.addEventListener('DOMContentLoaded', () => {
-  if (onHome) {
-    loadTrailers();
-    loadTopMovies();
+  // Home page widgets
+  const hasTrailers = document.querySelector('.trailers__container');
+  const hasTopList = document.getElementById('cardContainer');
+
+  if (hasTrailers || hasTopList) {
+    // optional debug:
+    // console.log('Init home detected:', { hasTrailers: !!hasTrailers, hasTopList: !!hasTopList });
+    if (hasTrailers) loadTrailers();
+    if (hasTopList)  loadTopMovies();
   }
 
-  if (onSearch) {
+  // Search page
+  const isSearchPage = document.location.pathname.endsWith('search.html') ||
+                       document.getElementById('searchForm') && !document.querySelector('.trailers__container') && !document.getElementById('cardContainer');
+  if (isSearchPage) {
     loadSearchResults();
   }
 
-  if (onFavorites) {
+  // Favorites page
+  const isFavoritesPage = document.location.pathname.endsWith('favorites.html') ||
+                          document.querySelector('[data-page="favorites"]');
+  if (isFavoritesPage) {
     import("./modules/favorites.js")
-      .then(module => module.loadFavorites())
-      .catch(error => console.error("Error loading favorites module:", error));
+      .then(m => m.loadFavorites())
+      .catch(err => console.error("Error loading favorites module:", err));
   }
 });
+
