@@ -4,6 +4,17 @@
 import { fetchTopMovies, searchMovies } from './modules/api.js';
 import { renderTrailers } from './modules/caroussel.js';
 
+
+// =============== Route detection that also works on GitHub Pages ==============
+const path = window.location.pathname;
+const onHome =
+  path === '/MMDB/' || path.endsWith('/MMDB/index.html') || path.endsWith('/index.html') || path === '/';
+const onSearch =
+  path.endsWith('/MMDB/search.html') || path.endsWith('/search.html');
+const onFavorites =
+  path.endsWith('/MMDB/favorites.html') || path.endsWith('/favorites.html');
+//========== added later for GitHub Pages link =====================
+
 // ==========================
 // 🎬 Load and Display 5 Random Trailers
 // ==========================
@@ -234,18 +245,19 @@ if (searchInput) {
 // ==========================
 //  Run Functions Based on Current Page
 // ==========================
-if (window.location.pathname.includes("index.html")) {
+document.addEventListener('DOMContentLoaded', () => {
+  if (onHome) {
     loadTrailers();
     loadTopMovies();
-}
+  }
 
-if (window.location.pathname.includes("search.html")) {
+  if (onSearch) {
     loadSearchResults();
-}
+  }
 
-// Load favorites dynamically
-if (window.location.pathname.includes("favorites.html")) {
+  if (onFavorites) {
     import("./modules/favorites.js")
-        .then(module => module.loadFavorites())
-        .catch(error => console.error("Error loading favorites module:", error));
-}
+      .then(module => module.loadFavorites())
+      .catch(error => console.error("Error loading favorites module:", error));
+  }
+});
