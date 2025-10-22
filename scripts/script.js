@@ -4,17 +4,6 @@
 import { fetchTopMovies, searchMovies } from './modules/api.js';
 import { renderTrailers } from './modules/caroussel.js';
 
-
-// =============== Route detection that also works on GitHub Pages ==============
-const path = window.location.pathname;
-const onHome =
-  path === '/MMDB/' || path.endsWith('/MMDB/index.html') || path.endsWith('/index.html') || path === '/';
-const onSearch =
-  path.endsWith('/MMDB/search.html') || path.endsWith('/search.html');
-const onFavorites =
-  path.endsWith('/MMDB/favorites.html') || path.endsWith('/favorites.html');
-//========== added later for GitHub Pages link =====================
-
 // ==========================
 // 🎬 Load and Display 5 Random Trailers
 // ==========================
@@ -242,35 +231,21 @@ if (searchInput) {
     searchInput.addEventListener("input", showSuggestions);
 }
 
-/// ==========================
-//  Run Functions Based on Current Page (element detection)
 // ==========================
-document.addEventListener('DOMContentLoaded', () => {
-  // Home page widgets
-  const hasTrailers = document.querySelector('.trailers__container');
-  const hasTopList = document.getElementById('cardContainer');
+//  Run Functions Based on Current Page
+// ==========================
+if (window.location.pathname.includes("index.html")) {
+    loadTrailers();
+    loadTopMovies();
+}
 
-  if (hasTrailers || hasTopList) {
-    // optional debug:
-    // console.log('Init home detected:', { hasTrailers: !!hasTrailers, hasTopList: !!hasTopList });
-    if (hasTrailers) loadTrailers();
-    if (hasTopList)  loadTopMovies();
-  }
-
-  // Search page
-  const isSearchPage = document.location.pathname.endsWith('search.html') ||
-                       document.getElementById('searchForm') && !document.querySelector('.trailers__container') && !document.getElementById('cardContainer');
-  if (isSearchPage) {
+if (window.location.pathname.includes("search.html")) {
     loadSearchResults();
-  }
+}
 
-  // Favorites page
-  const isFavoritesPage = document.location.pathname.endsWith('favorites.html') ||
-                          document.querySelector('[data-page="favorites"]');
-  if (isFavoritesPage) {
+// Load favorites dynamically
+if (window.location.pathname.includes("favorites.html")) {
     import("./modules/favorites.js")
-      .then(m => m.loadFavorites())
-      .catch(err => console.error("Error loading favorites module:", err));
-  }
-});
-
+        .then(module => module.loadFavorites())
+        .catch(error => console.error("Error loading favorites module:", error));
+}
